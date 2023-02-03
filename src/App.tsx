@@ -1,18 +1,13 @@
 import React from 'react';
 import './App.css';
 import Header from "./components/Header.";
+import Navbar from "./components/Navbar";
 
 function App() {
     return (
         <div className={"app-wrapper"}>
-           <Header/>
-            <nav className={"nav"}>
-                <div><a href={"#"}>Profile</a></div>
-                <div><a href={"#"}>Messages</a></div>
-                <div><a href={"#"}>News</a></div>
-                <div><a href={"#"}>Musics</a></div>
-                <div><a href={"#"}>Settings</a></div>
-            </nav>
+            <Header/>
+            <Navbar/>
             <main className={"main"}>
                 <div>
                     <img
