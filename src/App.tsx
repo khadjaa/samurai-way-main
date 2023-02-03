@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
+import Header from "./components/Header.";
 
 function App() {
     return (
         <div className={"app-wrapper"}>
-            <header className={"header"}>
-                <img src="https://wsd.events/2017/01/28/pres/here-be-dragons/pictures/react-logo.png" alt="logo"/>
-            </header>
+           <Header/>
             <nav className={"nav"}>
                 <div><a href={"#"}>Profile</a></div>
                 <div><a href={"#"}>Messages</a></div>
