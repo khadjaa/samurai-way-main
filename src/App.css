@@ -9,5 +9,10 @@
     margin: 0 auto;
 }
 
+.app-wrapper-main {
+    grid-area: c;
+    background-color: dimgray;
+}
+
 
 
