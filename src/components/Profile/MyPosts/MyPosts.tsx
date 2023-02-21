@@ -2,13 +2,18 @@ import React from "react";
 import s from "./MyPosts.module.css"
 import Post from "../MyPosts/Post/Post"
 
+
 const MyPosts = () => {
     return (
         <div className={s.item}>
-            My Posts
+            <h3>My Posts</h3>
             <div>
-                <textarea></textarea>
-                <button>Add post</button>
+                <div>
+                    <textarea></textarea>
+                </div>
+                <div>
+                    <button>Add post</button>
+                </div>
             </div>
             <div>
                 <Post message={"hello bro"} likesCount={5}/>

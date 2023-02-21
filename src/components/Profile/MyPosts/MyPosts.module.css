@@ -1,5 +1,6 @@
 .item {
     color: palevioletred;
+    margin: 10px;
 }
 
 textarea {
@@ -9,4 +10,5 @@ textarea {
 button{
     border-radius: 10px;
     border: none;
+    margin-bottom: 10px;
 }
