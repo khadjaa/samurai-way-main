@@ -15,6 +15,10 @@ const MyPosts = () => {
         {id: 2, message: 'It is so cool', likesCount:34}
     ]
 
+    const newPostItems = postItems
+        .map(el => <Post message={el.message} likesCount={el.likesCount}/>
+    )
+
     return (
         <div className={s.item}>
             <h3>My Posts</h3>
@@ -27,8 +31,7 @@ const MyPosts = () => {
                 </div>
             </div>
             <div>
-                <Post message={postItems[0].message} likesCount={postItems[0].likesCount}/>
-                <Post message={postItems[1].message} likesCount={postItems[1].likesCount}/>
+                {newPostItems}
             </div>
         </div>
     )

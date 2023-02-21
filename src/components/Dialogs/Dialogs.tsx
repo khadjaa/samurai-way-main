@@ -44,6 +44,8 @@ const Dialogs = () => {
         {id: 5, name: 'Sasha'}
     ]
 
+    const newNames = names.map(el => <DialogsItems id={el.id} name={el.name}/>)
+
     const messages: MessagesType[] = [
         {id: 1, message: 'Hi!'},
         {id: 2, message: 'How are you?'},
@@ -52,22 +54,20 @@ const Dialogs = () => {
         {id: 5, message: 'Buy'},
     ]
 
+    const newMessages = messages.map(el => {
+        return (
+            <MessageItems message={el.message}/>
+        )
+    })
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                <DialogsItems id={names[0].id} name={names[0].name}/>
-                <DialogsItems id={names[1].id} name={names[1].name}/>
-                <DialogsItems id={names[2].id} name={names[2].name}/>
-                <DialogsItems id={names[3].id} name={names[3].name}/>
-                <DialogsItems id={names[4].id} name={names[4].name}/>
+                {newNames}
             </div>
             <div className={s.messages}>
                 <div className={s.message}>
-                    <MessageItems message={messages[0].message}/>
-                    <MessageItems message={messages[1].message}/>
-                    <MessageItems message={messages[2].message}/>
-                    <MessageItems message={messages[3].message}/>
-                    <MessageItems message={messages[4].message}/>
+                    {newMessages}
                 </div>
             </div>
         </div>
