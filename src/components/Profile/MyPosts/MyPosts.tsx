@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./MyPosts.module.css"
 import Post from "../MyPosts/Post/Post"
-import {PostType} from "../../../App";
+import {PostType} from "../../../index";
 
 export type MyPostPropsType = {
     postItems: PostType[]

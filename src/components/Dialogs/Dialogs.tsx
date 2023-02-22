@@ -1,7 +1,7 @@
 import s from './Dialogs.module.css';
 import DialogsItems from "./DialogItem/DialogItem";
 import MessageItems from "./Message/Message";
-import {MessagesType, NamesType} from "../../App";
+import {MessagesType, NamesType} from "../../index";
 
 export type DialogsPropsType = {
     names: NamesType[]
