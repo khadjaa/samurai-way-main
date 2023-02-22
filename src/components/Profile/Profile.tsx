@@ -13,7 +13,7 @@ const Profile = () => {
 
     const postItems: PostType[] = [
         {id: 1, message: 'Hello Bro!', likesCount: 12},
-        {id: 2, message: 'It is so cool', likesCount:34}
+        {id: 2, message: 'It is so cool', likesCount:34},
     ]
 
     return (
