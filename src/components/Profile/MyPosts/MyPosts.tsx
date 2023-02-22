@@ -1,21 +1,15 @@
 import React from "react";
 import s from "./MyPosts.module.css"
 import Post from "../MyPosts/Post/Post"
+import {PostType} from "../Profile";
 
-export type PostType = {
-    id: number
-    message: string
-    likesCount: number
+export type MyPostPropsType = {
+    postItems: PostType[]
 }
 
-const MyPosts = () => {
+const MyPosts = (props: MyPostPropsType) => {
 
-    const postItems: PostType[] = [
-        {id: 1, message: 'Hello Bro!', likesCount: 12},
-        {id: 2, message: 'It is so cool', likesCount:34}
-    ]
-
-    const newPostItems = postItems
+    const newPostItems = props.postItems
         .map(el => <Post message={el.message} likesCount={el.likesCount}/>
     )
 
