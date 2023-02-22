@@ -2,24 +2,17 @@ import React from "react";
 import s from "./Profile.module.css"
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import {PostType} from "../../App";
 
-export type PostType = {
-    id: number
-    message: string
-    likesCount: number
+export type ProfilePropsType = {
+    postItems: PostType[]
 }
 
-const Profile = () => {
-
-    const postItems: PostType[] = [
-        {id: 1, message: 'Hello Bro!', likesCount: 12},
-        {id: 2, message: 'It is so cool', likesCount:34},
-    ]
-
+const Profile = (props: ProfilePropsType) => {
     return (
         <main>
             <ProfileInfo/>
-            <MyPosts postItems={postItems}/>
+            <MyPosts postItems={props.postItems}/>
         </main>
     )
 }
