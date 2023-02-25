@@ -1,4 +1,5 @@
 import s from './Dialogs.module.css';
+import React from 'react';
 import DialogsItems from "./DialogItem/DialogItem";
 import MessageItems from "./Message/Message";
 import {NamesArrayType} from "../../redux/state";
@@ -17,6 +18,12 @@ const Dialogs = (props:DialogsPropsType) => {
         )
     })
 
+    let inputMessageDialogsRef = React.createRef<HTMLInputElement>()
+
+    const addMessageHandler = () => {
+        alert(inputMessageDialogsRef.current?.value)
+    }
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
@@ -26,6 +33,10 @@ const Dialogs = (props:DialogsPropsType) => {
                 <div className={s.message}>
                     {newMessages}
                 </div>
+            </div>
+            <div>
+                <input ref={inputMessageDialogsRef}/>
+                <button onClick={addMessageHandler}>Add Message</button>
             </div>
         </div>
     )
