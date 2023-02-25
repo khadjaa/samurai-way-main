@@ -19,6 +19,7 @@ const MyPosts = (props: MyPostPropsType) => {
     const addPost = () => {
         if (postMessageRef.current){
             props.addPost(postMessageRef.current?.value)
+            postMessageRef.current.value = ''
         }
     }
 

@@ -1,3 +1,5 @@
+import {renderTree} from "../renderTree";
+
 export type NamesType = {
     id: number
     name: string
@@ -51,13 +53,13 @@ let state: StateType = {
 }
 
 export const addPost = (postMessage: string) =>{
-    debugger
     let newPost: PostType = {
         id: 5,
         message: postMessage,
         likesCount: 0
     }
     state.profilePage.postItems.push(newPost)
+    renderTree(state)
 }
 
 export default state;
