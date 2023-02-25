@@ -14,28 +14,40 @@ export type PostType = {
     likesCount: number
 }
 
-export type StateType ={
+export type NamesArrayType = {
     names: NamesType[]
     messages: MessagesType[]
+}
+
+export type postItemsArrayType = {
     postItems: PostType[]
 }
 
+export type StateType = {
+    profilePage: postItemsArrayType
+    dialogsPage: NamesArrayType
+}
+
 let state: StateType = {
-    names: [
-        {id: 1, name: 'Islam'},
-        {id: 2, name: 'Senya'},
-        {id: 3, name: 'Genya'},
-        {id: 4, name: 'Artem'},
-        {id: 5, name: 'Sasha'}],
-    messages: [
-        {id: 1, message: 'Hi!'},
-        {id: 2, message: 'How are you?'},
-        {id: 3, message: 'What to learn today'},
-        {id: 4, message: 'Good job'},
-        {id: 5, message: 'Buy'},],
-    postItems: [
-        {id: 1, message: 'Hello Bro!', likesCount: 12},
-        {id: 2, message: 'It is so cool', likesCount: 34},]
+    profilePage: {
+        postItems: [
+            {id: 1, message: 'Hello Bro!', likesCount: 12},
+            {id: 2, message: 'It is so cool', likesCount: 34},]
+    },
+    dialogsPage: {
+        names: [
+            {id: 1, name: 'Islam'},
+            {id: 2, name: 'Senya'},
+            {id: 3, name: 'Genya'},
+            {id: 4, name: 'Artem'},
+            {id: 5, name: 'Sasha'}],
+        messages: [
+            {id: 1, message: 'Hi!'},
+            {id: 2, message: 'How are you?'},
+            {id: 3, message: 'What to learn today'},
+            {id: 4, message: 'Good job'},
+            {id: 5, message: 'Buy'},],
+    }
 }
 
 export default state;

@@ -12,15 +12,14 @@ export type AppPropsType = {
 }
 
 function App(props: AppPropsType) {
-
     return (
         <BrowserRouter>
             <div className={"app-wrapper"}>
                 <Header/>
                 <Navbar/>
                 <div className={"app-wrapper-main"}>
-                    <Route path={'/dialogs'} render={() => <Dialogs names={props.state.names} messages={props.state.messages}/>}/>
-                    <Route path={'/profile'} render={() => <Profile postItems={props.state.postItems}/>}/>
+                    <Route path={'/dialogs'} render={() => <Dialogs state={props.state.dialogsPage}/>}/>
+                    <Route path={'/profile'} render={() => <Profile state={props.state.profilePage}/>}/>
                 </div>
             </div>
         </BrowserRouter>
