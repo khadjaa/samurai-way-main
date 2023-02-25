@@ -9,6 +9,7 @@ import {StateType} from "./redux/state";
 
 export type AppPropsType = {
     state: StateType
+    addPost: (s:string) => void
 }
 
 function App(props: AppPropsType) {
@@ -18,8 +19,8 @@ function App(props: AppPropsType) {
                 <Header/>
                 <Navbar/>
                 <div className={"app-wrapper-main"}>
-                    <Route path={'/dialogs'} render={() => <Dialogs state={props.state.dialogsPage}/>}/>
-                    <Route path={'/profile'} render={() => <Profile state={props.state.profilePage}/>}/>
+                    <Route path={'/dialogs'} render={() => <Dialogs state={props.state.dialogsPage} />}/>
+                    <Route path={'/profile'} render={() => <Profile state={props.state.profilePage} addPost={props.addPost}/>}/>
                 </div>
             </div>
         </BrowserRouter>

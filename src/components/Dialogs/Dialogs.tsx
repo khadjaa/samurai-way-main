@@ -8,7 +8,7 @@ export type DialogsPropsType = {
     state: NamesArrayType
 }
 
-const Dialogs = (props:DialogsPropsType) => {
+const Dialogs = (props: DialogsPropsType) => {
 
     const newNames = props.state.names.map(el => <DialogsItems id={el.id} name={el.name}/>)
 

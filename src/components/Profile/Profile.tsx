@@ -6,13 +6,14 @@ import {postItemsArrayType, PostType} from "../../redux/state";
 
 export type ProfilePropsType = {
     state: postItemsArrayType
+    addPost:(s:string) => void
 }
 
 const Profile = (props: ProfilePropsType) => {
     return (
         <main>
             <ProfileInfo/>
-            <MyPosts postItems={props.state.postItems}/>
+            <MyPosts postItems={props.state.postItems} addPost={props.addPost}/>
         </main>
     )
 }
