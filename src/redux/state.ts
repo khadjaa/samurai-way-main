@@ -29,6 +29,16 @@ export type StateType = {
     dialogsPage: NamesArrayType
 }
 
+type AddPostActionType = {
+    type: 'ADD-POST'
+}
+
+type ChangeNewTextActionType = {
+    type: 'CHANGE-NEW-TEXT'
+    postMessage: string
+}
+
+export type ActionsTypes = AddPostActionType | ChangeNewTextActionType
 
 export type StoreType = {
     getState: () => StateType
@@ -37,6 +47,7 @@ export type StoreType = {
     updateInputValue: (postMessage: string) => void
     _renderTree: () => void
     subscriber: (callback: () => void) => void
+    dispatch: (action: ActionsTypes) => void
 }
 
 export let store: StoreType = {
@@ -68,6 +79,10 @@ export let store: StoreType = {
     getState() {
         return this._state
     },
+    subscriber(observer) {
+        this._renderTree = observer
+    },
+
     addPost() {
         if (this._state.profilePage.newPostText.trim()) {
             let newPost: PostType = {
@@ -85,8 +100,24 @@ export let store: StoreType = {
         this._state.profilePage.newPostText = postMessage
         this._renderTree()
     },
-    subscriber(observer) {
-        this._renderTree = observer
+
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            if (this._state.profilePage.newPostText.trim()) {
+                let newPost: PostType = {
+                    id: 5,
+                    message: this._state.profilePage.newPostText,
+                    likesCount: 0
+                }
+                this._state.profilePage.postItems.push(newPost)
+            }
+
+            this._state.profilePage.newPostText = ''
+            this._renderTree()
+        } else if (action.type === 'CHANGE-NEW-TEXT') {
+            this._state.profilePage.newPostText = action.postMessage
+            this._renderTree()
+        }
     }
 }
 

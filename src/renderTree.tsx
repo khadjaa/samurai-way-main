@@ -5,7 +5,7 @@ import App from './App';
 
 export const renderTree = () => {
     ReactDOM.render(
-        <App state={store.getState()} addPost={store.addPost.bind(store)} updateInputValue={store.updateInputValue.bind(store)} />,
+        <App state={store.getState()} dispatch={store.dispatch.bind(store)}/>,
         document.getElementById('root')
     );
 }
