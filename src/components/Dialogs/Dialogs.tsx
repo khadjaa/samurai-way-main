@@ -1,11 +1,12 @@
 import s from './Dialogs.module.css';
-import React from 'react';
+import React, {ChangeEvent, KeyboardEvent} from 'react';
 import DialogsItems from "./DialogItem/DialogItem";
 import MessageItems from "./Message/Message";
-import {NamesArrayType} from "../../redux/state";
+import {ActionsTypes, addDialogsMessageAC, NamesArrayType, updateInputValueDialogsAC} from "../../redux/state";
 
 export type DialogsPropsType = {
     state: NamesArrayType
+    dispatch: (action: ActionsTypes) => void
 }
 
 const Dialogs = (props: DialogsPropsType) => {
@@ -18,10 +19,19 @@ const Dialogs = (props: DialogsPropsType) => {
         )
     })
 
-    let inputMessageDialogsRef = React.createRef<HTMLInputElement>()
-
     const addMessageHandler = () => {
-        alert(inputMessageDialogsRef.current?.value)
+        props.dispatch(addDialogsMessageAC())
+    }
+
+    const onKeyDownHandlerR = (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            addMessageHandler()
+        }
+    }
+
+
+    const onChangeMessageValue = (e: ChangeEvent<HTMLInputElement>) => {
+        props.dispatch(updateInputValueDialogsAC(e.currentTarget.value))
     }
 
     return (
@@ -35,7 +45,9 @@ const Dialogs = (props: DialogsPropsType) => {
                 </div>
             </div>
             <div>
-                <input ref={inputMessageDialogsRef}/>
+                <input value={props.state.newMessageTextBody}
+                        onChange={onChangeMessageValue}
+                        onKeyDown={onKeyDownHandlerR}/>
                 <button onClick={addMessageHandler}>Add Message</button>
             </div>
         </div>
