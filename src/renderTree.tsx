@@ -1,12 +1,11 @@
 import React from 'react';
-import state, {subscriber} from './redux/state'
+import {store} from './redux/state'
 import ReactDOM from 'react-dom';
 import App from './App';
-import {addPost, updateInputValue} from './redux/state'
 
 export const renderTree = () => {
     ReactDOM.render(
-        <App state={state} addPost={addPost} updateInputValue={updateInputValue} />,
+        <App state={store.getState()} addPost={store.addPost.bind(store)} updateInputValue={store.updateInputValue.bind(store)} />,
         document.getElementById('root')
     );
 }
