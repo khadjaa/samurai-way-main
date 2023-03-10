@@ -17,6 +17,7 @@ export type PostType = {
 export type NamesArrayType = {
     names: NamesType[]
     messages: MessagesType[]
+    newMessageTextBody: string
 }
 
 export type postItemsArrayType = {
@@ -29,22 +30,14 @@ export type StateType = {
     dialogsPage: NamesArrayType
 }
 
-type AddPostActionType = {
-    type: 'ADD-POST'
-}
-
-type ChangeNewTextActionType = {
-    type: 'CHANGE-NEW-TEXT'
-    postMessage: string
-}
-
-export type ActionsTypes = AddPostActionType | ChangeNewTextActionType
+export type ActionsTypes = ReturnType<typeof addPostAC> |
+    ReturnType<typeof updateInputValueAC> |
+    ReturnType<typeof updateInputValueDialogsAC> |
+    ReturnType<typeof addDialogsMessageAC>
 
 export type StoreType = {
     getState: () => StateType
     _state: StateType
-    addPost: () => void
-    updateInputValue: (postMessage: string) => void
     _renderTree: () => void
     subscriber: (callback: () => void) => void
     dispatch: (action: ActionsTypes) => void
@@ -71,6 +64,7 @@ export let store: StoreType = {
                 {id: 3, message: 'What to learn today'},
                 {id: 4, message: 'Good job'},
                 {id: 5, message: 'Buy'},],
+            newMessageTextBody: ''
         }
     },
     _renderTree() {
@@ -81,24 +75,6 @@ export let store: StoreType = {
     },
     subscriber(observer) {
         this._renderTree = observer
-    },
-
-    addPost() {
-        if (this._state.profilePage.newPostText.trim()) {
-            let newPost: PostType = {
-                id: 5,
-                message: this._state.profilePage.newPostText,
-                likesCount: 0
-            }
-            this._state.profilePage.postItems.push(newPost)
-        }
-
-        this._state.profilePage.newPostText = ''
-        this._renderTree()
-    },
-    updateInputValue(postMessage: string) {
-        this._state.profilePage.newPostText = postMessage
-        this._renderTree()
     },
 
     dispatch(action) {
@@ -114,10 +90,46 @@ export let store: StoreType = {
 
             this._state.profilePage.newPostText = ''
             this._renderTree()
-        } else if (action.type === 'CHANGE-NEW-TEXT') {
+        } else if (action.type === 'CHANGE-NEW-POST-TEXT') {
             this._state.profilePage.newPostText = action.postMessage
+            this._renderTree()
+        } else if (action.type === 'CHANGE-NEW-DIALOGS-MESSAGE-TEXT'){
+            this._state.dialogsPage.newMessageTextBody = action.dialogMessage
+            this._renderTree()
+        } else if (action.type === 'ADD-MESSAGE'){
+            let newMessage : MessagesType = {
+                id: 3,
+                message: this._state.dialogsPage.newMessageTextBody
+            }
+            this._state.dialogsPage.messages.push(newMessage)
+            this._state.dialogsPage.newMessageTextBody = ''
             this._renderTree()
         }
     }
 }
 
+export const addPostAC = () => {
+    return {
+        type: 'ADD-POST'
+    } as const
+}
+
+export const updateInputValueAC = (message: string) => {
+    return {
+        type: 'CHANGE-NEW-POST-TEXT',
+        postMessage: message
+    } as const
+}
+
+export const addDialogsMessageAC = () => {
+    return {
+        type: 'ADD-MESSAGE'
+    } as const
+}
+
+export const updateInputValueDialogsAC = (message: string) => {
+    return {
+        type: 'CHANGE-NEW-DIALOGS-MESSAGE-TEXT',
+        dialogMessage: message
+    } as const
+}

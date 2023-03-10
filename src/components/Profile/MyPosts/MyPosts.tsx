@@ -1,7 +1,7 @@
-import React, {ChangeEvent} from "react";
+import React, {ChangeEvent, KeyboardEvent} from "react";
 import s from "./MyPosts.module.css"
 import Post from "../MyPosts/Post/Post"
-import {ActionsTypes, PostType} from "../../../redux/state";
+import {ActionsTypes, addPostAC, PostType, updateInputValueAC} from "../../../redux/state";
 
 export type MyPostPropsType = {
     postItems: PostType[]
@@ -17,11 +17,17 @@ const MyPosts = (props: MyPostPropsType) => {
     // let postMessageRef = React.createRef<HTMLTextAreaElement>()
 
     const addPost = () => {
-        props.dispatch({type: "ADD-POST"})
+        props.dispatch(addPostAC())
     }
 
     const updateInputValue = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch({type: "CHANGE-NEW-TEXT", postMessage: e.currentTarget.value})
+        props.dispatch(updateInputValueAC(e.currentTarget.value))
+    }
+
+    const onKeyDownHandler = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.key === 'Enter') {
+            addPost()
+        }
     }
 
     return (
@@ -31,6 +37,7 @@ const MyPosts = (props: MyPostPropsType) => {
                 <div>
                     <textarea value={props.newPostText}
                               onChange={updateInputValue}
+                              onKeyDown={onKeyDownHandler}
                     ></textarea>
                 </div>
                 <div>
