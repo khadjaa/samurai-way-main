@@ -32,7 +32,7 @@ export type StateType = {
 
 export type ActionsTypes = ReturnType<typeof addPostAC> |
     ReturnType<typeof updateInputValueAC> |
-    ReturnType<typeof updateInputValueDialogsAC> |
+    ReturnType<typeof updateNewMessageBodyAC> |
     ReturnType<typeof addDialogsMessageAC>
 
 export type StoreType = {
@@ -93,11 +93,11 @@ export let store: StoreType = {
         } else if (action.type === 'CHANGE-NEW-POST-TEXT') {
             this._state.profilePage.newPostText = action.postMessage
             this._renderTree()
-        } else if (action.type === 'CHANGE-NEW-DIALOGS-MESSAGE-TEXT'){
+        } else if (action.type === 'CHANGE-NEW-DIALOGS-MESSAGE-TEXT') {
             this._state.dialogsPage.newMessageTextBody = action.dialogMessage
             this._renderTree()
-        } else if (action.type === 'ADD-MESSAGE'){
-            let newMessage : MessagesType = {
+        } else if (action.type === 'ADD-MESSAGE') {
+            let newMessage: MessagesType = {
                 id: 3,
                 message: this._state.dialogsPage.newMessageTextBody
             }
@@ -127,7 +127,7 @@ export const addDialogsMessageAC = () => {
     } as const
 }
 
-export const updateInputValueDialogsAC = (message: string) => {
+export const updateNewMessageBodyAC = (message: string) => {
     return {
         type: 'CHANGE-NEW-DIALOGS-MESSAGE-TEXT',
         dialogMessage: message
