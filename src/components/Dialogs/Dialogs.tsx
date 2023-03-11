@@ -2,12 +2,8 @@ import s from './Dialogs.module.css';
 import React, {ChangeEvent, KeyboardEvent} from 'react';
 import DialogsItems from "./DialogItem/DialogItem";
 import MessageItems from "./Message/Message";
-import {
-    ActionsTypes,
-    addDialogsMessageAC,
-    NamesArrayType,
-    updateNewMessageBodyAC
-} from "../../redux/state";
+import {addDialogsMessageAC, updateNewMessageBodyAC} from "../../redux/dialogsReducer";
+import {ActionsTypes, NamesArrayType} from "../../redux/state";
 
 export type DialogsPropsType = {
     state: NamesArrayType
@@ -51,8 +47,8 @@ const Dialogs = (props: DialogsPropsType) => {
             </div>
             <div>
                 <input value={newMessageBody}
-                        onChange={onChangeMessageValue}
-                        onKeyDown={onKeyDownHandlerR}/>
+                       onChange={onChangeMessageValue}
+                       onKeyDown={onKeyDownHandlerR}/>
                 <button onClick={addMessageHandler}>Send Message</button>
             </div>
         </div>
