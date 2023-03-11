@@ -84,58 +84,5 @@ export let store: StoreType = {
         profileReducer(this._state, action)
         dialogsReducer(this._state, action)
         this._renderTree()
-        // if (action.type === 'ADD-POST') {
-        //     if (this._state.profilePage.newPostText.trim()) {
-        //         let newPost: PostType = {
-        //             id: 5,
-        //             message: this._state.profilePage.newPostText,
-        //             likesCount: 0
-        //         }
-        //         this._state.profilePage.postItems.push(newPost)
-        //     }
-        //
-        //     this._state.profilePage.newPostText = ''
-        //     this._renderTree()
-        // } else if (action.type === 'CHANGE-NEW-POST-TEXT') {
-        //     this._state.profilePage.newPostText = action.postMessage
-        // //     this._renderTree()
-        // if (action.type === 'CHANGE-NEW-DIALOGS-MESSAGE-TEXT') {
-        //     this._state.dialogsPage.newMessageTextBody = action.dialogMessage
-        //     this._renderTree()
-        // } else if (action.type === 'ADD-MESSAGE') {
-        //     let newMessage: MessagesType = {
-        //         id: 3,
-        //         message: this._state.dialogsPage.newMessageTextBody
-        //     }
-        //     this._state.dialogsPage.messages.push(newMessage)
-        //     this._state.dialogsPage.newMessageTextBody = ''
-        //     this._renderTree()
-        // }
     }
 }
-
-// export const addPostAC = () => {
-//     return {
-//         type: 'ADD-POST'
-//     } as const
-// }
-//
-// export const updateInputValueAC = (message: string) => {
-//     return {
-//         type: 'CHANGE-NEW-POST-TEXT',
-//         postMessage: message
-//     } as const
-// }
-
-// export const addDialogsMessageAC = () => {
-//     return {
-//         type: 'ADD-MESSAGE'
-//     } as const
-// }
-//
-// export const updateNewMessageBodyAC = (message: string) => {
-//     return {
-//         type: 'CHANGE-NEW-DIALOGS-MESSAGE-TEXT',
-//         dialogMessage: message
-//     } as const
-// }
