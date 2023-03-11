@@ -38,11 +38,6 @@ export type ActionsTypes = ReturnType<typeof updateNewMessageBodyAC> |
     ReturnType<typeof addPostAC> |
     ReturnType<typeof updateInputValueAC>
 
-export type DispatchType = {
-    type: string
-    text? : string
-}
-
 export type StoreType = {
     getState: () => StateType
     _state: StateType
