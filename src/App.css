@@ -5,7 +5,7 @@
     "n c";
     grid-auto-rows: 60px 1fr;
     grid-template-columns: 2fr 10fr;
-    width: 1200px;
+    width: 99%;
     margin: 0 auto;
 }
 
