@@ -11,10 +11,9 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 export type AppPropsType = {
     store: rootReducerType
-    // dispatch: (action: ActionsTypes) => void
 }
 
-function App(props: AppPropsType) {
+function App() {
     return (
         <BrowserRouter>
             <div className={"app-wrapper"}>
@@ -22,9 +21,9 @@ function App(props: AppPropsType) {
                 <Navbar/>
                 <div className={"app-wrapper-main"}>
                     <Route path={'/dialogs'}
-                           render={() => <DialogsContainer store={props.store}/>}/>
+                           render={() => <DialogsContainer  />}/>
                     <Route path={'/profile'}
-                           render={() => <Profile store={props.store}/>}/>
+                           render={() => <Profile />}/>
                 </div>
             </div>
         </BrowserRouter>

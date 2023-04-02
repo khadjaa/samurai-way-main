@@ -1,18 +1,19 @@
 import React, {ChangeEvent, KeyboardEvent} from "react";
 import s from "./MyPosts.module.css"
 import Post from "../MyPosts/Post/Post"
-import {PostType} from "../../../redux/store";
+// import {PostType} from "../../../redux/store";
+import {MyPostPropsType} from "./MyPostsContainer";
 
-export type MyPostPropsType = {
-    postItems: PostType[]
-    newPostText: string
-    addPost: () => void
-    changePost: (text: string) => void
-}
+// export type MyPostPropsType = {
+//     postItems: PostType[]
+//     newPostText: string
+//     addPost: () => void
+//     changePost: (text: string) => void
+// }
 
 const MyPosts = (props: MyPostPropsType) => {
 
-    const newPostItems = props.postItems
+    const newPostItems = props.posts
         .map(el => <Post message={el.message} likesCount={el.likesCount}/>)
 
     // let postMessageRef = React.createRef<HTMLTextAreaElement>()

@@ -1,17 +1,17 @@
 import {addPostAC, updateInputValueAC} from "./profileReducer";
 import {addDialogsMessageAC, updateNewMessageBodyAC} from "./dialogsReducer";
 
-export type NamesType = {
+type NamesType = {
     id: number
     name: string
 }
 
-export type MessagesType = {
+type MessagesType = {
     id: number
     message: string
 }
 
-export type PostType = {
+type PostType = {
     id: number
     message: string
     likesCount: number

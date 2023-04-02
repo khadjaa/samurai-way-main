@@ -7,11 +7,11 @@ export type ProfilePropsType = {
     store: rootReducerType
 }
 
-const Profile = (props: ProfilePropsType) => {
+const Profile = () => {
     return (
         <main>
             <ProfileInfo/>
-            <MyPostsContainer store={props.store}/>
+            <MyPostsContainer />
         </main>
     )
 }

@@ -1,4 +1,14 @@
-import {ActionsTypes, MessagesType} from "./store";
+import {ActionsTypes} from "./store";
+
+export type NamesType = {
+    id: number
+    name: string
+}
+
+export type MessagesType = {
+    id: number
+    message: string
+}
 
 let initState = {
     names: [
@@ -6,18 +16,21 @@ let initState = {
         {id: 2, name: 'Senya'},
         {id: 3, name: 'Genya'},
         {id: 4, name: 'Artem'},
-        {id: 5, name: 'Sasha'}],
+        {id: 5, name: 'Sasha'}
+    ] as Array<NamesType>,
     messages: [
         {id: 1, message: 'Hi!'},
         {id: 2, message: 'How are you?'},
         {id: 3, message: 'What to learn today'},
         {id: 4, message: 'Good job'},
-        {id: 5, message: 'Buy'},],
+        {id: 5, message: 'Buy'},
+    ] as Array<MessagesType>,
     newMessageTextBody: ''
 }
 
+export type InitialStateType = typeof initState
 
-export const dialogsReducer = (state = initState, action: ActionsTypes) => {
+export const dialogsReducer = (state: InitialStateType = initState, action: ActionsTypes): InitialStateType => {
 
     switch (action.type) {
         case 'CHANGE-NEW-DIALOGS-MESSAGE-TEXT':

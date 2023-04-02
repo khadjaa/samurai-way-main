@@ -3,24 +3,25 @@ import React, {ChangeEvent, KeyboardEvent} from 'react';
 import DialogsItems from "./DialogItem/DialogItem";
 import MessageItems from "./Message/Message";
 import {NamesArrayType} from "../../redux/store";
+import {DialogsPropsType} from "./DialogsContainer";
 
-export type DialogsPropsType = {
-    state: NamesArrayType
-    updateNewMessageBody: (text: string) => void
-    sendMessage: () => void
-}
+// export type DialogsPropsType = {
+//     state: NamesArrayType
+//     updateNewMessageBody: (text: string) => void
+//     sendMessage: () => void
+// }
 
 const Dialogs = (props: DialogsPropsType) => {
 
-    const newNames = props.state.names.map(el => <DialogsItems id={el.id} name={el.name}/>)
+    const newNames = props.dialogsPage.names.map(el => <DialogsItems id={el.id} name={el.name}/>)
 
-    const newMessages = props.state.messages.map(el => {
+    const newMessages = props.dialogsPage.messages.map(el => {
         return (
             <MessageItems message={el.message}/>
         )
     })
 
-    let newMessageBody = props.state.newMessageTextBody
+    let newMessageBody = props.dialogsPage.newMessageTextBody
 
     const addMessageHandler = () => props.sendMessage()
 
