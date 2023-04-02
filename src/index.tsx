@@ -1,15 +1,6 @@
 import React from 'react';
 import './index.css';
 
-// import {renderTree} from "./renderTree";
-//
-// renderTree()
-
-// store.subscribe(() => {
-//     // let state = store.getState()
-//     // renderTree()
-// })
-
 import {store} from './redux/redux-store'
 import ReactDOM from 'react-dom';
 import App from './App';
