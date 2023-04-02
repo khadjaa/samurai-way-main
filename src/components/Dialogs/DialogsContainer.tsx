@@ -1,9 +1,5 @@
-import s from './Dialogs.module.css';
-import React, {ChangeEvent, KeyboardEvent} from 'react';
-import DialogsItems from "./DialogItem/DialogItem";
-import MessageItems from "./Message/Message";
+import React from 'react';
 import {addDialogsMessageAC, updateNewMessageBodyAC} from "../../redux/dialogsReducer";
-import {ActionsTypes, NamesArrayType} from "../../redux/store";
 import {rootReducerType} from "../../redux/redux-store";
 import Dialogs from "./Dialogs";
 
