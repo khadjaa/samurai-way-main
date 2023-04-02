@@ -12,8 +12,3 @@ store.subscribe(() => {
     renderTree()
 })
 
-// store.subscriber(() => {
-//     // let state = store.getState()
-//     // renderTree(state)
-//     renderTree()
-// })

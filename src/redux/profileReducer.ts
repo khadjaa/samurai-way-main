@@ -1,4 +1,4 @@
-import {ActionsTypes, postItemsArrayType, PostType, StateType} from "./store";
+import {ActionsTypes, postItemsArrayType, PostType} from "./store";
 
 let initialState: postItemsArrayType = {
     postItems: [

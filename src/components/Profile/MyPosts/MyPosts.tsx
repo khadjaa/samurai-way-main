@@ -1,12 +1,12 @@
 import React, {ChangeEvent, KeyboardEvent} from "react";
 import s from "./MyPosts.module.css"
 import Post from "../MyPosts/Post/Post"
-import {PostType} from "../../../redux/store";
+import {postItemsArrayType, PostType} from "../../../redux/store";
 
 export type MyPostPropsType = {
     postItems: PostType[]
     newPostText: string
-    addPost: ()=> void
+    addPost: () => void
     changePost: (text: string) => void
 }
 

@@ -1,29 +1,30 @@
 import React from "react";
 
 import {addPostAC, updateInputValueAC} from "../../../redux/profileReducer";
-import {ActionsTypes, PostType} from "../../../redux/store";
 import MyPosts from "./MyPosts";
+import {rootReducerType} from "../../../redux/redux-store";
 
 export type MyPostPropsType = {
-    postItems: PostType[]
-    newPostText: string
-    dispatch: (action: ActionsTypes) => void
+    store: rootReducerType
 }
 
 const MyPostsContainer = (props: MyPostPropsType) => {
+
+    const state = props.store.getState().profilePage
+
     const addPost = () => {
-        props.dispatch(addPostAC())
+        props.store.dispatch(addPostAC())
     }
 
     const changePost = (text: string) => {
-        props.dispatch(updateInputValueAC(text))
+        props.store.dispatch(updateInputValueAC(text))
     }
 
     return (
         <div>
             <MyPosts
-                postItems={props.postItems}
-                newPostText={props.newPostText}
+                postItems={state.postItems}
+                newPostText={state.newPostText}
                 addPost={addPost}
                 changePost={changePost}
             />

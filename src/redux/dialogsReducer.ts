@@ -1,4 +1,4 @@
-import {ActionsTypes, MessagesType, StateType} from "./store";
+import {ActionsTypes, MessagesType} from "./store";
 
 let initState = {
     names: [

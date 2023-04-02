@@ -4,25 +4,29 @@ import DialogsItems from "./DialogItem/DialogItem";
 import MessageItems from "./Message/Message";
 import {addDialogsMessageAC, updateNewMessageBodyAC} from "../../redux/dialogsReducer";
 import {ActionsTypes, NamesArrayType} from "../../redux/store";
+import {rootReducerType} from "../../redux/redux-store";
 
 export type DialogsPropsType = {
-    state: NamesArrayType
-    dispatch: (action: ActionsTypes) => void
+    // state: NamesArrayType
+    // dispatch: (action: ActionsTypes) => void
+    store: rootReducerType
 }
 
 const Dialogs = (props: DialogsPropsType) => {
 
-    const newNames = props.state.names.map(el => <DialogsItems id={el.id} name={el.name}/>)
+    let state = props.store.getState().dialogsPage
 
-    const newMessages = props.state.messages.map(el => {
+    const newNames = state.names.map(el => <DialogsItems id={el.id} name={el.name}/>)
+
+    const newMessages = state.messages.map(el => {
         return (
             <MessageItems message={el.message}/>
         )
     })
 
-    let newMessageBody = props.state.newMessageTextBody
+    let newMessageBody = state.newMessageTextBody
 
-    const addMessageHandler = () => props.dispatch(addDialogsMessageAC())
+    const addMessageHandler = () => props.store.dispatch(addDialogsMessageAC())
 
 
     const onKeyDownHandlerR = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -32,7 +36,7 @@ const Dialogs = (props: DialogsPropsType) => {
     }
 
     const onChangeMessageValue = (e: ChangeEvent<HTMLInputElement>) => {
-        props.dispatch(updateNewMessageBodyAC(e.currentTarget.value))
+        props.store.dispatch(updateNewMessageBodyAC(e.currentTarget.value))
     }
 
     return (
