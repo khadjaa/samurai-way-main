@@ -6,7 +6,6 @@ export type PostType = {
     likesCount: number
 }
 
-
 let initialState = {
     postItems: [
         {id: 1, message: 'Hello Bro!', likesCount: 12},
@@ -17,23 +16,30 @@ let initialState = {
 
 export type initialStateType = typeof initialState
 
-export const profileReducer = (state: initialStateType = initialState, action: ActionsTypes):initialStateType => {
+export const profileReducer = (state: initialStateType = initialState, action: ActionsTypes): initialStateType => {
     switch (action.type) {
-        case 'ADD-POST':
+        case 'ADD-POST': {
             if (state.newPostText.trim()) {
                 let newPost: PostType = {
                     id: 5,
                     message: state.newPostText,
                     likesCount: 0
                 }
-                state.postItems.push(newPost)
+                let copyState = {...state}
+                copyState.postItems = [...state.postItems]
+                copyState.postItems.push(newPost)
+                copyState.newPostText = ''
+                return copyState
             }
 
-            state.newPostText = ''
             return state
-        case 'CHANGE-NEW-POST-TEXT':
-            state.newPostText = action.postMessage
-            return state
+        }
+        case 'CHANGE-NEW-POST-TEXT': {
+            let copyState = {...state}
+            copyState.newPostText = action.postMessage
+            return copyState
+        }
+
         default:
             return state
     }

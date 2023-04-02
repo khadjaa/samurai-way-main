@@ -2,14 +2,7 @@ import s from './Dialogs.module.css';
 import React, {ChangeEvent, KeyboardEvent} from 'react';
 import DialogsItems from "./DialogItem/DialogItem";
 import MessageItems from "./Message/Message";
-import {NamesArrayType} from "../../redux/store";
 import {DialogsPropsType} from "./DialogsContainer";
-
-// export type DialogsPropsType = {
-//     state: NamesArrayType
-//     updateNewMessageBody: (text: string) => void
-//     sendMessage: () => void
-// }
 
 const Dialogs = (props: DialogsPropsType) => {
 
