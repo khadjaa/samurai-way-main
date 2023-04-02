@@ -20,24 +20,13 @@ export const profileReducer = (state: initialStateType = initialState, action: A
     switch (action.type) {
         case 'ADD-POST': {
             if (state.newPostText.trim()) {
-                let newPost: PostType = {
-                    id: 5,
-                    message: state.newPostText,
-                    likesCount: 0
-                }
-                let copyState = {...state}
-                copyState.postItems = [...state.postItems]
-                copyState.postItems.push(newPost)
-                copyState.newPostText = ''
-                return copyState
+                let newPost: PostType = {id: 5, message: state.newPostText, likesCount: 0}
+                return {...state, postItems: [...state.postItems, newPost], newPostText: ''}
             }
-
             return state
         }
         case 'CHANGE-NEW-POST-TEXT': {
-            let copyState = {...state}
-            copyState.newPostText = action.postMessage
-            return copyState
+            return {...state, newPostText: action.postMessage}
         }
 
         default:

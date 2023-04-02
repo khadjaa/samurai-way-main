@@ -1,15 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent} from "react";
 import s from "./MyPosts.module.css"
 import Post from "../MyPosts/Post/Post"
-// import {PostType} from "../../../redux/store";
 import {MyPostPropsType} from "./MyPostsContainer";
-
-// export type MyPostPropsType = {
-//     postItems: PostType[]
-//     newPostText: string
-//     addPost: () => void
-//     changePost: (text: string) => void
-// }
 
 const MyPosts = (props: MyPostPropsType) => {
 

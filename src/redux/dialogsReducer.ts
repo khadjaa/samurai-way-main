@@ -34,22 +34,12 @@ export const dialogsReducer = (state: InitialStateType = initState, action: Acti
 
     switch (action.type) {
         case 'CHANGE-NEW-DIALOGS-MESSAGE-TEXT': {
-            let copyState = {...state}
-            copyState.newMessageTextBody = action.dialogMessage
-            return copyState
+            return {...state, newMessageTextBody: action.dialogMessage}
         }
         case 'ADD-MESSAGE': {
-            let newMessage: MessagesType = {
-                id: 3,
-                message: state.newMessageTextBody
-            }
-            let copyState = {...state}
-            copyState.messages = [...state.messages]
-            copyState.messages.push(newMessage)
-            copyState.newMessageTextBody = ''
-            return copyState
+            let newMessage: MessagesType = {id: 3, message: state.newMessageTextBody}
+            return {...state, messages: [...state.messages, newMessage], newMessageTextBody: ''}
         }
-
         default:
             return state
     }
