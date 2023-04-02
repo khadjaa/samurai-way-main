@@ -7,6 +7,7 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import {ActionsTypes, StateType} from "./redux/store";
 import {rootReducerType} from "./redux/redux-store";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 export type AppPropsType = {
     store: rootReducerType
@@ -21,7 +22,7 @@ function App(props: AppPropsType) {
                 <Navbar/>
                 <div className={"app-wrapper-main"}>
                     <Route path={'/dialogs'}
-                           render={() => <Dialogs store={props.store}/>}/>
+                           render={() => <DialogsContainer store={props.store}/>}/>
                     <Route path={'/profile'}
                            render={() => <Profile store={props.store}/>}/>
                 </div>
