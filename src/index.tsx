@@ -1,5 +1,5 @@
 import React from 'react';
-import {store} from './redux/state'
+import {store} from './redux/store'
 import './index.css';
 import {renderTree} from "./renderTree";
 

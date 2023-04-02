@@ -3,7 +3,7 @@ import React, {ChangeEvent, KeyboardEvent} from 'react';
 import DialogsItems from "./DialogItem/DialogItem";
 import MessageItems from "./Message/Message";
 import {addDialogsMessageAC, updateNewMessageBodyAC} from "../../redux/dialogsReducer";
-import {ActionsTypes, NamesArrayType} from "../../redux/state";
+import {ActionsTypes, NamesArrayType} from "../../redux/store";
 
 export type DialogsPropsType = {
     state: NamesArrayType
