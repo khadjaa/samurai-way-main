@@ -1,5 +1,5 @@
-import {addPostAC, profileReducer, updateInputValueAC} from "./profileReducer";
-import {addDialogsMessageAC, dialogsReducer, updateNewMessageBodyAC} from "./dialogsReducer";
+import {addPostAC, updateInputValueAC} from "./profileReducer";
+import {addDialogsMessageAC, updateNewMessageBodyAC} from "./dialogsReducer";
 
 export type NamesType = {
     id: number

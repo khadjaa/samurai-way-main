@@ -2,7 +2,7 @@ import s from './Dialogs.module.css';
 import React, {ChangeEvent, KeyboardEvent} from 'react';
 import DialogsItems from "./DialogItem/DialogItem";
 import MessageItems from "./Message/Message";
-import { NamesArrayType} from "../../redux/store";
+import {NamesArrayType} from "../../redux/store";
 
 export type DialogsPropsType = {
     state: NamesArrayType
