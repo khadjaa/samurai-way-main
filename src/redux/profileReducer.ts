@@ -1,21 +1,28 @@
-import {ActionsTypes, PostType, StateType} from "./store";
+import {ActionsTypes, postItemsArrayType, PostType, StateType} from "./store";
 
-export const profileReducer = (state: StateType, action: ActionsTypes) => {
+let initialState: postItemsArrayType = {
+    postItems: [
+        {id: 1, message: 'Hello Bro!', likesCount: 12},
+        {id: 2, message: 'It is so cool', likesCount: 34}],
+    newPostText: 'it-kamasutra'
+}
+
+export const profileReducer = (state = initialState, action: ActionsTypes) => {
     switch (action.type) {
         case 'ADD-POST':
-            if (state.profilePage.newPostText.trim()) {
+            if (state.newPostText.trim()) {
                 let newPost: PostType = {
                     id: 5,
-                    message: state.profilePage.newPostText,
+                    message: state.newPostText,
                     likesCount: 0
                 }
-                state.profilePage.postItems.push(newPost)
+                state.postItems.push(newPost)
             }
 
-            state.profilePage.newPostText = ''
+            state.newPostText = ''
             return state
         case 'CHANGE-NEW-POST-TEXT':
-            state.profilePage.newPostText = action.postMessage
+            state.newPostText = action.postMessage
             return state
         default:
             return state
