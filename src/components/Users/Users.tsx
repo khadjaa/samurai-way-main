@@ -3,7 +3,7 @@ import {UsersPropsType} from "./UsersContainer";
 import styles from './Users.module.css'
 import axios from "axios";
 import userPhoto from '../../assets/ava.png'
-export const Users = (props: UsersPropsType) => {
+const Users = (props: UsersPropsType) => {
 
     const getUsers = () => {
         if (props.users.users.length === 0) {

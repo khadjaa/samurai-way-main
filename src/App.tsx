@@ -3,12 +3,9 @@ import './App.css';
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
-import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import {ActionsTypes, StateType} from "./redux/store";
 import {rootReducerType} from "./redux/redux-store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import {Users} from "./components/Users/Users";
 import {UsersContainer} from "./components/Users/UsersContainer";
 
 export type AppPropsType = {
