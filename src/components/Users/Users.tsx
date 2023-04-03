@@ -6,21 +6,10 @@ import userPhoto from '../../assets/ava.png'
 export const Users = (props: UsersPropsType) => {
 
     if (props.users.users.length === 0) {
-
         axios.get('https://social-network.samuraijs.com/api/1.0/users')
             .then(response => {
                 props.setUsers(response.data.items)
             })
-
-        //     {
-        //         id: 1,
-        //         photoUrl: 'https://www.film.ru/sites/default/files/filefield_paths/aanganim.jpg',
-        //         followed: false,
-        //         fullName: 'Dima',
-        //         status: 'I am a boss',
-        //         location: {city: 'Minsk', county: 'Belarus'}
-        //     },
-
     }
 
     return (
