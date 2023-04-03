@@ -14,12 +14,6 @@ class UsersC extends React.Component<UsersPropsType> {
             })
     }
 
-    getUsers = () => {
-        if (this.props.users.users.length === 0) {
-
-        }
-    }
-
     render() {
         return (
             <div>
