@@ -39,7 +39,7 @@ class Users extends React.Component<UsersPropsType> {
                     }
                 </div>
                 {/*<button onClick={this.getUsers}>Get Users</button>*/}
-                {this.props.users.users.map(el => {
+                {this.props.usersPage.users.map(el => {
                     return (
                         <div key={el.id}>
                      <span>

@@ -8,18 +8,18 @@ import {
     setCurrentPageAC,
     setTotalUsersCountAC,
     setUsersAC,
-    unFollowAC
+    unFollowAC,
 } from "../../redux/usersReducer";
 import Users from "./Users";
 
 type mapStateToPropsType = {
-    users: InitialStateType
+    usersPage: InitialStateType
     pageSize: number
     totalUsersCount: number
     currentPage: number
 }
 
-type mapDispatchToProps = {
+type mapDispatchToPropsType = {
     follow: (userId: number) => void
     unFollow: (userId: number) => void
     setUsers: (users: any) => void
@@ -27,18 +27,18 @@ type mapDispatchToProps = {
     setTotalUsersCount: (totalCount: number) => void
 }
 
-export type UsersPropsType = mapStateToPropsType & mapDispatchToProps
+export type UsersPropsType = mapStateToPropsType & mapDispatchToPropsType
 
-const mapStateToProps = (state: AppStateType) => {
+const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
-        users: state.usersPage,
+        usersPage: state.usersPage,
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
+const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     return {
         follow: (userId: number) => {
             dispatch(followAC(userId))
