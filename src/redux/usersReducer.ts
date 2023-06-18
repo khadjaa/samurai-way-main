@@ -1,20 +1,27 @@
 export type UserType = {
-    id: number, photos: {small: string, large: string} , followed: boolean, name: string, status: string, location: { city: string, county: string }
+    id: number, photos: { small: string, large: string }, followed: boolean, name: string, status: string, location: { city: string, county: string }
 }
 
-export type InitialState = {
+export type InitialStateType = {
     users: UserType[]
+    pageSize: number,
+    totalUsersCount: number,
+    currentPage: number
 }
 
-const initialState: InitialState = {
-    users: [] as Array<UserType>
+const initialState: InitialStateType = {
+    users: [] as Array<UserType>,
+    pageSize: 100,
+    totalUsersCount: 0,
+    currentPage: 1
 }
 
 // export type initialStateType = typeof initialState
 
-type ActionsType = FollowType | UnFollowType | SetUsersType
+type ActionsType = FollowType | UnFollowType
+    | SetUsersType | SetCurrentPage | SetTotalUsersCount
 
-export const usersReducer = (state: InitialState = initialState, action: ActionsType): InitialState => {
+export const usersReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
         case 'FOLLOW' : {
             return {
@@ -34,6 +41,12 @@ export const usersReducer = (state: InitialState = initialState, action: Actions
         }
         case 'SET-USERS' : {
             return {...state, users: [...state.users, ...action.users]}
+        }
+        case "SET-CURRENT-PAGE": {
+            return {...state, currentPage: action.currentPage}
+        }
+        case "SET-TOTAL-USERS-COUNT": {
+            return {...state, totalUsersCount: action.count}
         }
         default:
             return state
@@ -61,5 +74,21 @@ export const setUsersAC = (users: any) => {
     return {
         type: 'SET-USERS',
         users
+    } as const
+}
+
+type SetCurrentPage = ReturnType<typeof setCurrentPageAC>
+export const setCurrentPageAC = (currentPage: number) => {
+    return {
+        type: 'SET-CURRENT-PAGE',
+        currentPage
+    } as const
+}
+
+type SetTotalUsersCount = ReturnType<typeof setTotalUsersCountAC>
+export const setTotalUsersCountAC = (totalUsersCount: number) => {
+    return {
+        type: 'SET-TOTAL-USERS-COUNT',
+        count: totalUsersCount
     } as const
 }

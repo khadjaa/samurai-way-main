@@ -16,6 +16,13 @@ class Users extends React.Component<UsersPropsType> {
     render() {
         return (
             <div>
+                <div>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
                 {/*<button onClick={this.getUsers}>Get Users</button>*/}
                 {this.props.users.users.map(el => {
                     return (
