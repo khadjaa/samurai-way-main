@@ -14,12 +14,17 @@ import Users from "./Users";
 
 type mapStateToPropsType = {
     users: InitialStateType
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 
 type mapDispatchToProps = {
     follow: (userId: number) => void
     unFollow: (userId: number) => void
     setUsers: (users: any) => void
+    setCurrentPage: (pageNumber: number) => void
+    setTotalUsersCount: (totalCount: number) => void
 }
 
 export type UsersPropsType = mapStateToPropsType & mapDispatchToProps
@@ -29,7 +34,7 @@ const mapStateToProps = (state: AppStateType) => {
         users: state.usersPage,
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage
+        currentPage: state.usersPage.currentPage,
     }
 }
 

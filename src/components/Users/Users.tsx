@@ -7,21 +7,36 @@ import userPhoto from '../../assets/ava.png'
 class Users extends React.Component<UsersPropsType> {
 
     componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
-            .then(response => {
-                this.props.setUsers(response.data.items)
-            })
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+            this.props.setUsers(response.data.items)
+            this.props.setTotalUsersCount(response.data.totalCount)
+            console.log(response)
+        })
+    }
+
+    onPageChange = (pageNumber: number) => {
+        this.props.setCurrentPage(pageNumber)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
+            this.props.setUsers(response.data.items)
+        })
     }
 
     render() {
+        let pageCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
+        let pages = []
+        for (let i = 1; i <= pageCount; i++) {
+            pages.push(i)
+        }
         return (
             <div>
                 <div>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                    {
+                        pages.map((p, ind) =>
+                            <span className={this.props.currentPage === p ? styles.selectedPage : styles.pages}
+                                  onClick={() => {this.onPageChange(p)}}
+                                  key={ind}
+                            >{p}</span>)
+                    }
                 </div>
                 {/*<button onClick={this.getUsers}>Get Users</button>*/}
                 {this.props.users.users.map(el => {
