@@ -12,6 +12,7 @@ import {
 import React from "react";
 import axios from "axios";
 import {Users} from "./Users";
+import {Preloader} from "../Loader/Preloader";
 
 type mapStateToPropsType = {
     usersPage: InitialStateType
@@ -91,7 +92,7 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
     render() {
         return (
             <>
-                {this.props.isFetching ? <div>aaa</div> : null}
+                {this.props.isFetching ? <Preloader/> : null}
                 <Users totalUsersCount={this.props.totalUsersCount}
                        pageSize={this.props.pageSize}
                        currentPage={this.props.currentPage}
