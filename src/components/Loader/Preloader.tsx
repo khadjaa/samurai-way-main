@@ -1,12 +1,12 @@
 import React from 'react';
-import styles from './Preloader.module.css';
+import sp from '../../assets/sp.svg'
+import s from './Preloader.module.css'
 
 export const Preloader = () => {
     return (
-        <div className={styles.preloader}>
-            <div className={styles.spinner}></div>
+        <div className={s.size}>
+            <img src={sp} alt="loader"/>
         </div>
     );
 };
-
 
