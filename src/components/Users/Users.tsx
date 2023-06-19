@@ -3,7 +3,7 @@ import styles from "./Users.module.css";
 import userPhoto from "../../assets/ava.png";
 import {InitialStateType} from "../../redux/usersReducer";
 
-type UserPropsType = {
+type UsersPropsType = {
     totalUsersCount: number
     pageSize: number
     currentPage: number
@@ -13,7 +13,7 @@ type UserPropsType = {
     unFollow: (userId: number) => void
 }
 
-export const Users = (props: UserPropsType) => {
+export const Users = (props: UsersPropsType) => {
     let pageCount = Math.ceil(props.totalUsersCount / props.pageSize)
     let pages = []
     for (let i = 1; i <= pageCount; i++) {

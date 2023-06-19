@@ -6,7 +6,7 @@ import Profile from "./components/Profile/Profile";
 import {BrowserRouter, Route} from "react-router-dom";
 import {rootReducerType} from "./redux/redux-store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import {UsersContainer} from "./components/Users/UsersContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 export type AppPropsType = {
     store: rootReducerType

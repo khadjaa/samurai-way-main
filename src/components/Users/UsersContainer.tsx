@@ -12,35 +12,6 @@ import {
 import React from "react";
 import axios from "axios";
 import {Users} from "./Users";
-class UsersC extends React.Component<UsersPropsType> {
-
-    componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
-            this.props.setUsers(response.data.items)
-            this.props.setTotalUsersCount(response.data.totalCount)
-            console.log(response)
-        })
-    }
-
-    onPageChange = (pageNumber: number) => {
-        this.props.setCurrentPage(pageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
-            this.props.setUsers(response.data.items)
-        })
-    }
-
-    render() {
-        return (
-            <Users totalUsersCount={this.props.totalUsersCount}
-                 pageSize={this.props.pageSize}
-                 currentPage={this.props.currentPage}
-                 onPageChange={this.onPageChange}
-                 usersPage={this.props.usersPage}
-                 follow={this.props.follow}
-                 unFollow={this.props.unFollow}/>
-        )
-    }
-}
 
 type mapStateToPropsType = {
     usersPage: InitialStateType
@@ -57,7 +28,7 @@ type mapDispatchToPropsType = {
     setTotalUsersCount: (totalCount: number) => void
 }
 
-export type UsersPropsType = mapStateToPropsType & mapDispatchToPropsType
+export type UsersContainerPropsType = mapStateToPropsType & mapDispatchToPropsType
 
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
@@ -88,5 +59,35 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     }
 }
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersC)
+class UsersContainer extends React.Component<UsersContainerPropsType> {
+
+    componentDidMount() {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+            this.props.setUsers(response.data.items)
+            this.props.setTotalUsersCount(response.data.totalCount)
+            console.log(response)
+        })
+    }
+
+    onPageChange = (pageNumber: number) => {
+        this.props.setCurrentPage(pageNumber)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
+            this.props.setUsers(response.data.items)
+        })
+    }
+
+    render() {
+        return (
+            <Users totalUsersCount={this.props.totalUsersCount}
+                   pageSize={this.props.pageSize}
+                   currentPage={this.props.currentPage}
+                   onPageChange={this.onPageChange}
+                   usersPage={this.props.usersPage}
+                   follow={this.props.follow}
+                   unFollow={this.props.unFollow}/>
+        )
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
 
