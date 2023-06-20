@@ -1,17 +1,15 @@
 import React from "react";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import {Preloader} from "../Loader/Preloader";
+import {ProfileType} from "../../redux/profileReducer";
 
 type ProfilePropsType = {
-    profile: any,
+    profile: ProfileType,
     children?: React.ReactNode
 }
 
 const Profile = (props: ProfilePropsType) => {
-    if (!props.profile) {
-        return <Preloader/>
-    }
+
     return (
         <main>
             <ProfileInfo profile={props.profile}/>
