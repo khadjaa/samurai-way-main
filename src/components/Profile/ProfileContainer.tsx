@@ -3,9 +3,17 @@ import axios from "axios";
 import Profile from "./Profile";
 import {AppStateType} from "../../redux/redux-store";
 import {connect} from "react-redux";
-import {setUserProfile} from "../../redux/profileReducer";
+import {ProfileType, setUserProfile} from "../../redux/profileReducer";
 
-class ProfileContainer extends React.Component<any> {
+type MapStatePropsType = {
+    profile: ProfileType
+}
+type MapDispatchPropsType = {
+    setUserProfile: (profile: ProfileType) => void
+}
+type ProfileContainerPropsType = MapStatePropsType & MapDispatchPropsType
+
+class ProfileContainer extends React.Component<ProfileContainerPropsType> {
     componentDidMount() {
         axios.get('https://social-network.samuraijs.com/api/1.0/profile/29349')
             .then(res => {
