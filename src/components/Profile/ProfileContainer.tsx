@@ -20,12 +20,12 @@ type PropsType = RouteComponentProps<PathParamType> & ProfileContainerPropsType
 
 class ProfileContainer extends React.Component<PropsType> {
     componentDidMount() {
-            let userID = this.props.match.params.userId
-            axios.get('https://social-network.samuraijs.com/api/1.0/profile/29349' + userID)
-                .then(res => {
-                    this.props.setUserProfile(res.data)
-                    console.log(res.data)
-                })
+        let userID = this.props.match.params.userId
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userID)
+            .then(res => {
+                this.props.setUserProfile(res.data)
+                console.log(res.data)
+            })
     }
 
     render() {
@@ -42,5 +42,5 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     profile: state.profilePage.profile
 })
 
-const WithRouterProfileContainer = withRouter(ProfileContainer)
-export default connect(mapStateToProps, {setUserProfile})(WithRouterProfileContainer)
+const WithUrlDataProfileContainer = withRouter(ProfileContainer)
+export default connect(mapStateToProps, {setUserProfile})(WithUrlDataProfileContainer)
