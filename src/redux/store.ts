@@ -1,4 +1,3 @@
-import {addPostAC, updateInputValueAC} from "./profileReducer";
 import {addDialogsMessageAC, updateNewMessageBodyAC} from "./dialogsReducer";
 
 type NamesType = {
@@ -34,9 +33,8 @@ export type StateType = {
 }
 
 export type ActionsTypes = ReturnType<typeof updateNewMessageBodyAC> |
-    ReturnType<typeof addDialogsMessageAC> |
-    ReturnType<typeof addPostAC> |
-    ReturnType<typeof updateInputValueAC>
+    ReturnType<typeof addDialogsMessageAC>
+
 
 export type StoreType = {
     getState: () => StateType

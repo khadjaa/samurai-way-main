@@ -1,7 +1,11 @@
 import React from "react";
 import s from "./ProfileInfo.module.css"
 
-const ProfileInfo = () => {
+type ProfileInfoPropsType = {
+    profile: any
+}
+
+const ProfileInfo = (props: ProfileInfoPropsType) => {
     return (
         <div>
             <div>
@@ -10,6 +14,7 @@ const ProfileInfo = () => {
                      alt="main_img"/>
             </div>
             <div className={s.descriptionBlock}>
+                <img src={props.profile.photos.large} alt="ava"/>
                 ava + description
             </div>
         </div>
