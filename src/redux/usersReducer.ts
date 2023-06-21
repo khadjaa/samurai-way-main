@@ -1,3 +1,6 @@
+import {Dispatch} from "redux";
+import {usersApi} from "../api/api";
+
 export type UserType = {
     id: number,
     photos: { small: string, large: string },
@@ -131,4 +134,14 @@ export const toggleFollowingInProgress = (isFetching: boolean, userId: number) =
         isFetching,
         userId
     } as const
+}
+
+export const getUsers = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
+    dispatch(toggleIsFetching(true))
+    usersApi.getUsers(currentPage, pageSize)
+        .then(data => {
+            dispatch(toggleIsFetching(false))
+            dispatch(setUsers(data.items))
+            dispatch(setTotalUsersCount(data.totalCount))
+        })
 }
