@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from "./Users.module.css";
 import userPhoto from "../../assets/ava.png";
-import {InitialStateType, UserType} from "../../redux/usersReducer";
+import {InitialStateType} from "../../redux/usersReducer";
 import {NavLink} from "react-router-dom";
 
 type UsersPropsType = {
@@ -10,8 +10,8 @@ type UsersPropsType = {
     currentPage: number
     onPageChange: (pageNumber: number) => void
     usersPage: InitialStateType
-    follow: (user: UserType) => void
-    unFollow: (user: UserType) => void
+    follow: (userId: number) => void
+    unFollow: (userId: number) => void
     followingInProgress: number[]
 }
 
@@ -47,11 +47,11 @@ export const Users = (props: UsersPropsType) => {
                              {el.followed
                                  ? <button disabled={props.followingInProgress.some(id => id === el.id)}
                                            onClick={() => {
-                                               props.unFollow(el)
+                                               props.unFollow(el.id)
                                            }}>Unfollow</button>
                                  : <button disabled={props.followingInProgress.some(id => id === el.id)}
                                            onClick={() => {
-                                               props.follow(el)
+                                               props.follow(el.id)
                                            }}>Follow</button>
                              }
                          </div>

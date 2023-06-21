@@ -1,6 +1,5 @@
 import {Dispatch} from "redux";
 import {usersApi} from "../api/api";
-import axios from "axios";
 
 export type UserType = {
     id: number,
@@ -147,37 +146,25 @@ export const getUsers = (currentPage: number, pageSize: number) => (dispatch: Di
         })
 }
 
-export const unFollow = (user: UserType) => (dispatch: Dispatch) => {
-    dispatch(toggleFollowingInProgress(true, user.id))
-    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
-        {
-            withCredentials: true,
-            headers: {
-                'API-KEY': 'ec578b22-e0ab-48ce-86ed-f73094d8dad1'
-            }
-        })
+export const unFollow = (userId: number) => (dispatch: Dispatch) => {
+    dispatch(toggleFollowingInProgress(true, userId))
+    usersApi.unFollow(userId)
         .then(res => {
             if (res.data.resultCode === 0) {
-                dispatch(unFollowSuccess(user.id))
+                dispatch(unFollowSuccess(userId))
             }
-            dispatch(toggleFollowingInProgress(false, user.id))
+            dispatch(toggleFollowingInProgress(false, userId))
         })
 }
 
 
-export const follow = (user: UserType) => (dispatch: Dispatch) => {
-    dispatch(toggleFollowingInProgress(true, user.id))
-    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {},
-        {
-            withCredentials: true,
-            headers: {
-                'API-KEY': 'ec578b22-e0ab-48ce-86ed-f73094d8dad1'
-            }
-        })
+export const follow = (userId: number) => (dispatch: Dispatch) => {
+    dispatch(toggleFollowingInProgress(true, userId))
+    usersApi.follow(userId)
         .then(res => {
             if (res.data.resultCode === 0) {
-                dispatch(followSuccess(user.id))
+                dispatch(followSuccess(userId))
             }
-            dispatch(toggleFollowingInProgress(false, user.id))
+            dispatch(toggleFollowingInProgress(false, userId))
         })
 }

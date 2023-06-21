@@ -24,8 +24,8 @@ type mapStateToPropsType = {
 type mapDispatchToPropsType = {
     setCurrentPage: (pageNumber: number) => void
     getUsers: (currentPage: number, pageSize: number) => void
-    unFollow: (user: UserType) => void
-    follow: (user: UserType) => void
+    unFollow: (userId: number) => void
+    follow: (userId: number) => void
 }
 
 export type UsersContainerPropsType = mapStateToPropsType & mapDispatchToPropsType
