@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import axios from "axios";
+import {authApi} from "../api/api";
 
 export type UserDataType = {
     id: number | null
@@ -38,9 +38,9 @@ export const setAuthUserData = (data: UserDataType) => {
 }
 
 export const getAuthMe = () => (dispatch: Dispatch) => {
-    axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true})
+    authApi.me()
         .then(response => {
-            if( response.data.resultCode === 0){
+            if (response.data.resultCode === 0) {
                 dispatch(setAuthUserData(response.data.data))
             }
         })
