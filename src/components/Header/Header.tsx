@@ -1,6 +1,5 @@
 import React from "react";
 import s from "./Header.module.css"
-import {UserDataType} from "../../redux/authReducer";
 import {NavLink} from "react-router-dom";
 
 type HeaderPropsType = {
@@ -8,7 +7,6 @@ type HeaderPropsType = {
     email: string
     login: string
     isAuth: boolean
-    setAuthUserData: (data: UserDataType) => void
 }
 
 const Header = (props: HeaderPropsType) => {

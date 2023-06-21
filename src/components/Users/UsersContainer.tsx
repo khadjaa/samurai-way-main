@@ -6,7 +6,6 @@ import {
     InitialStateType,
     setCurrentPage,
     unFollow,
-    UserType,
 } from "../../redux/usersReducer";
 import React from "react";
 import {Users} from "./Users";
