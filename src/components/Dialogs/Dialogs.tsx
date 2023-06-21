@@ -3,6 +3,7 @@ import React, {ChangeEvent, KeyboardEvent} from 'react';
 import DialogsItems from "./DialogItem/DialogItem";
 import MessageItems from "./Message/Message";
 import {DialogsPropsType} from "./DialogsContainer";
+import {Redirect} from "react-router-dom";
 
 const Dialogs = (props: DialogsPropsType) => {
 
@@ -28,6 +29,8 @@ const Dialogs = (props: DialogsPropsType) => {
     const onChangeMessageValue = (e: ChangeEvent<HTMLInputElement>) => {
         props.updateNewMessageBody(e.currentTarget.value)
     }
+
+    if (!props.isAuth) return <Redirect to={'/login'}/>
 
     return (
         <div className={s.dialogs}>

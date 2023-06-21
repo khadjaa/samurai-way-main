@@ -8,6 +8,7 @@ import {NamesArrayType} from "../../redux/store";
 
 type MapStatePropsType = {
     dialogsPage: NamesArrayType
+    isAuth: boolean
 }
 
 type DispatchPropsType = {
@@ -19,7 +20,8 @@ export type DialogsPropsType = MapStatePropsType & DispatchPropsType
 
 const mapStateToProps = (state: AppStateType) => {
     return {
-        dialogsPage: state.dialogsPage
+        dialogsPage: state.dialogsPage,
+        isAuth: state.auth.isAuth
     }
 }
 
