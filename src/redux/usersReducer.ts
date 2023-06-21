@@ -1,5 +1,6 @@
 import {Dispatch} from "redux";
 import {usersApi} from "../api/api";
+import axios from "axios";
 
 export type UserType = {
     id: number,
@@ -79,16 +80,16 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
     }
 }
 
-type FollowType = ReturnType<typeof follow>
-export const follow = (userId: number) => {
+type FollowType = ReturnType<typeof followSuccess>
+export const followSuccess = (userId: number) => {
     return {
         type: 'FOLLOW',
         userId
     } as const
 }
 
-type UnFollowType = ReturnType<typeof unFollow>
-export const unFollow = (userId: number) => {
+type UnFollowType = ReturnType<typeof unFollowSuccess>
+export const unFollowSuccess = (userId: number) => {
     return {
         type: 'UNFOLLOW',
         userId
@@ -143,5 +144,40 @@ export const getUsers = (currentPage: number, pageSize: number) => (dispatch: Di
             dispatch(toggleIsFetching(false))
             dispatch(setUsers(data.items))
             dispatch(setTotalUsersCount(data.totalCount))
+        })
+}
+
+export const unFollow = (user: UserType) => (dispatch: Dispatch) => {
+    dispatch(toggleFollowingInProgress(true, user.id))
+    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
+        {
+            withCredentials: true,
+            headers: {
+                'API-KEY': 'ec578b22-e0ab-48ce-86ed-f73094d8dad1'
+            }
+        })
+        .then(res => {
+            if (res.data.resultCode === 0) {
+                dispatch(unFollowSuccess(user.id))
+            }
+            dispatch(toggleFollowingInProgress(false, user.id))
+        })
+}
+
+
+export const follow = (user: UserType) => (dispatch: Dispatch) => {
+    dispatch(toggleFollowingInProgress(true, user.id))
+    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {},
+        {
+            withCredentials: true,
+            headers: {
+                'API-KEY': 'ec578b22-e0ab-48ce-86ed-f73094d8dad1'
+            }
+        })
+        .then(res => {
+            if (res.data.resultCode === 0) {
+                dispatch(followSuccess(user.id))
+            }
+            dispatch(toggleFollowingInProgress(false, user.id))
         })
 }
